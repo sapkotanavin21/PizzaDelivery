@@ -23,9 +23,7 @@ public interface UserAPI {
     Call<SignUpResponse> registerUser(@Body User users);
     @POST("users/login")
     Call<SignUpResponse> checklogin(@Body username Username);
-//  @FormUrlEncoded
-//  @POST("users/login")
-//    Call<SignUpResponse> checkUser(@Field("username") String username, @Field("password") String password);
+
     @Multipart
     @POST("upload")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);

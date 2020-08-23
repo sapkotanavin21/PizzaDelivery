@@ -10,10 +10,9 @@ public class Url {
 
  public static Retrofit getInstance() {
      Retrofit retrofit = new Retrofit.Builder()
-             .baseUrl(base_Url).addConverterFactory(GsonConverterFactory.create()).build();
-
+             .baseUrl(base_Url)
+             .addConverterFactory(GsonConverterFactory.create()).build();
      return retrofit;
-
  }
     }
 

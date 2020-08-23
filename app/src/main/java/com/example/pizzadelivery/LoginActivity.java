@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if(event.values[1]<0){
-                   // login();
+                    login();
                     finish();
                 }
                 else if (event.values[1]>0){

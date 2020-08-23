@@ -8,7 +8,6 @@ public class SignUpResponse {
         this.status = status;
         this.token = token;
     }
-//    aa
 
     public String getStatus() {
         return status;
