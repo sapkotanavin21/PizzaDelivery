@@ -18,23 +18,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.loader.content.CursorLoader;
 
-import com.apsara.pizzadelivery.StrictModeClass.StrictModeClass;
-import com.apsara.pizzadelivery.api.UserAPI;
-import com.apsara.pizzadelivery.model.User;
-import com.apsara.pizzadelivery.serverresponse.ImageResponse;
-import com.apsara.pizzadelivery.serverresponse.SignUpResponse;
-import com.apsara.pizzadelivery.url.Url;
-
-import java.io.File;
-import java.io.IOException;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -65,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 if (etPassword.getText().toString().equals((etPassword.getText().toString()))) {
-                    saveImageOnly();
-                    signup();
+                    //saveImageOnly();
+                    //signup();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
@@ -113,65 +98,65 @@ public class RegisterActivity extends AppCompatActivity {
         cursor.close();
         return result;
     }
-    private void saveImageOnly() {
-        File file = new File(imagePath);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",
-                file.getName(), requestBody);
+//    private void saveImageOnly() {
+//        File file = new File(imagePath);
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",
+//                file.getName(), requestBody);
+//
+//        UserAPI usersAPI = Url.getInstance().create(UserAPI.class);
+//        Call<ImageResponse> responseBodyCall = usersAPI.uploadImage(body);
+//
+//        StrictModeClass.StrictMode();
+//        //Synchronous method
+//        try {
+//            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
+//            imageName = imageResponseResponse.body().getFilename();
+//            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
+//        } catch (IOException e) {
+//            Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            e.printStackTrace();
+//        }
+//    }
 
-        UserAPI usersAPI = Url.getInstance().create(UserAPI.class);
-        Call<ImageResponse> responseBodyCall = usersAPI.uploadImage(body);
-
-        StrictModeClass.StrictMode();
-        //Synchronous method
-        try {
-            Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
-            imageName = imageResponseResponse.body().getFilename();
-            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-
-
-    private void signup() {
-
-        String firstname = etFirst.getText().toString();
-        String lastname = etLast.getText().toString();
-        String PhoneNumber= etPhoneNo.getText().toString();
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-
-
-        User user = new User(firstname,lastname,PhoneNumber,username,password,imageName);
-        UserAPI userapi = Url.getInstance().create(UserAPI.class);
-        Call<SignUpResponse> signupResponseCall = userapi.registerUser(user);
-        signupResponseCall.enqueue(new Callback<SignUpResponse>() {
-            @Override
-            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Code" + response.code(), Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Notification notification=new NotificationCompat.Builder(RegisterActivity.this,CreateChannel.CHANNEL_1)
-                        .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
-                        .setContentTitle("Register Sucessful")
-                        .setContentText("you have sucessfully registered")
-                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                        .build();
-                notificationManagerCompat.notify(1,notification);
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<SignUpResponse> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-    }
+//
+//    private void signup() {
+//
+//        String firstname = etFirst.getText().toString();
+//        String lastname = etLast.getText().toString();
+//        String PhoneNumber= etPhoneNo.getText().toString();
+//        String username = etUsername.getText().toString();
+//        String password = etPassword.getText().toString();
+//
+//
+//        User user = new User(firstname,lastname,PhoneNumber,username,password,imageName);
+//        UserAPI userapi = Url.getInstance().create(UserAPI.class);
+//        Call<SignUpResponse> signupResponseCall = userapi.registerUser(user);
+//        signupResponseCall.enqueue(new Callback<SignUpResponse>() {
+//            @Override
+//            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(RegisterActivity.this, "Code" + response.code(), Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                Notification notification=new NotificationCompat.Builder(RegisterActivity.this,CreateChannel.CHANNEL_1)
+//                        .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+//                        .setContentTitle("Register Sucessful")
+//                        .setContentText("you have sucessfully registered")
+//                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//                        .build();
+//                notificationManagerCompat.notify(1,notification);
+//                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<SignUpResponse> call, Throwable t) {
+//                Toast.makeText(RegisterActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//
+//    }
 
 
 }
