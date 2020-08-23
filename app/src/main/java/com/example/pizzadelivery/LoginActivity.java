@@ -21,6 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.pizzadelivery.StrictModeClass.StrictModeClass;
+import com.example.pizzadelivery.api.UserAPI;
+import com.example.pizzadelivery.bll.LoginBLL;
+import com.example.pizzadelivery.model.username;
+import com.example.pizzadelivery.serverresponse.SignUpResponse;
+import com.example.pizzadelivery.url.Url;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
 
 public class LoginActivity extends AppCompatActivity {
     Button btnlogin;
@@ -37,9 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnlogin = findViewById(R.id.btnlogin);
 
-//        notificationManagerCompat= NotificationManagerCompat.from(this);
-//        CreateChannel channel= new CreateChannel(this);
-//        channel.createChannel();
+        notificationManagerCompat= NotificationManagerCompat.from(this);
+        CreateChannel channel= new CreateChannel(this);
+        channel.createChannel();
 
        tvRegister=findViewById(R.id.tvRegister);
        sensorGyro();
@@ -68,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     return;
                 }
-
-
 
             }
         });
@@ -113,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = etPassword.getText().toString();
 
         LoginBLL loginBLL = new LoginBLL();
-        com.apsara.pizzadelivery.model.username Username = new username(username, password);
+     com.example.pizzadelivery.model.username Username = new username(username, password);
 //
         UserAPI usersAPI = Url.getInstance().create(UserAPI.class);
         Call<SignUpResponse> usersCall = usersAPI.checklogin(Username);
@@ -130,13 +140,13 @@ public class LoginActivity extends AppCompatActivity {
                 Url.token += loginResponse.body().getToken();
                 Toast.makeText(LoginActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
                 Notification notification = new NotificationCompat.Builder(LoginActivity.this, CreateChannel.CHANNEL_1).
-                        setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+                        setSmallIcon(R.drawable.c5)
                         .setContentTitle("Login")
                         .setContentText("You are login successfully!!")
                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                         .build();
                 notificationManagerCompat.notify(1, notification);
-                Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("Userlogin", databaseList());
                 startActivity(intent);
 
@@ -155,13 +165,13 @@ public class LoginActivity extends AppCompatActivity {
 
         if (loginBLL.checkUser(username, password)) {
             Notification notification = new NotificationCompat.Builder(LoginActivity.this, CreateChannel.CHANNEL_1).
-                    setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+                    setSmallIcon(R.drawable.c5)
                     .setContentTitle("Login")
                     .setContentText("You are login successfully!!")
                     .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                     .build();
             notificationManagerCompat.notify(1, notification);
-            Toast.makeText(LoginActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("Userlogin", databaseList());
             startActivity(intent);
