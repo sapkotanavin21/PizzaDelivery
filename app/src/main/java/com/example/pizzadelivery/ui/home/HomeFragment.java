@@ -1,6 +1,7 @@
 package com.example.pizzadelivery.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.pizzadelivery.R;
+import com.example.pizzadelivery.url.Url;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
@@ -41,6 +51,14 @@ public class HomeFragment extends Fragment {
                 imageView.setImageResource(mImages[position]);
             }
         });
+
+        SmallPizza();
+
         return view;
+    }
+
+    private void SmallPizza() {
+
+
     }
 }
