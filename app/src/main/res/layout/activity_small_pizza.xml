@@ -1,0 +1,70 @@
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".CartActivity.ChickenPizzaActivity">
+
+        <ImageView
+            android:id="@+id/AddChicken"
+            android:layout_width="285dp"
+            android:layout_height="246dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="38dp"
+            android:src="@drawable/pi1" />
+
+        <TextView
+            android:id="@+id/tvChicken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:hint="Name"
+            android:textSize="20sp"
+            android:layout_below="@+id/AddChicken"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tvAddLocation"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:textSize="20sp"
+            android:layout_below="@+id/tvChicken"
+            android:gravity="center"
+            android:text="Location" />
+
+        <TextView
+            android:id="@+id/tvAddPrice"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:textSize="20sp"
+            android:layout_below="@+id/tvAddLocation"
+            android:gravity="center"
+            android:text="Price" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddChicken"
+            android:fontFamily="serif"
+            android:text="Add to cart"
+            android:background="@drawable/butondesign"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/tvAddPrice"
+            android:layout_marginTop="20dp"/>
+
+
+
+    </RelativeLayout>

@@ -12,17 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.apsara.pizzadelivery.CartActivity.ChickenPizzaActivity;
-import com.apsara.pizzadelivery.R;
-import com.apsara.pizzadelivery.StrictModeClass.StrictModeClass;
-import com.apsara.pizzadelivery.model.Chicken;
-import com.apsara.pizzadelivery.url.Url;
+import com.example.pizzadelivery.CartActivity.SmallPizzaActivity;
+import com.example.pizzadelivery.R;
+import com.example.pizzadelivery.StrictModeClass.StrictModeClass;
+import com.example.pizzadelivery.model.Small;
+import com.example.pizzadelivery.url.Url;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-public class SmallPizzaAdapter extends RecyclerView.Adapter<SmallPizzaAdapter.ChickenViewHolder> {
+public class SmallPizzaAdapter extends RecyclerView.Adapter<SmallPizzaAdapter.SmallViewHolder> {
     Context mContext;
     List<Small> smallPizzaList;
 
@@ -33,43 +33,43 @@ public class SmallPizzaAdapter extends RecyclerView.Adapter<SmallPizzaAdapter.Ch
 
     @NonNull
     @Override
-    public ChickenViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SmallViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_chickenpizza, parent, false);
-        return new SmallPizzaAdapter.ChickenViewHolder(view);
+                .inflate(R.layout.layout_smallpizza, parent, false);
+        return new SmallPizzaAdapter.SmallViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChickenViewHolder chickenViewHolder, int i) {
+    public void onBindViewHolder(@NonNull SmallViewHolder SmallViewHolder, int i) {
 //
-        final Chicken chickenPizza= (Chicken) chickenPizzaList.get(i);
-        String imgpath=Url.imagepath+chickenPizza.getImage();
-     ///// chickenViewHolder.imgProfile.setImageResource(chickenPizza.getImage());
-        chickenViewHolder.tvName.setText(chickenPizza.getName());
-        chickenViewHolder.tvlocation.setText(chickenPizza.getLocation());
-        chickenViewHolder.tvPrice.setText(chickenPizza.getPrice());
-        chickenViewHolder.tvfood.setText(chickenPizza.getFood());
+        final Small small = (Small) smallPizzaList.get(i);
+        String imgpath = Url.imagepath + small.getImage();
+
+        SmallViewHolder.tvName.setText(small.getName());
+        SmallViewHolder.tvlocation.setText(small.getLocation());
+        SmallViewHolder.tvPrice.setText(small.getPrice());
+        SmallViewHolder.tvfood.setText(small.getFood());
         StrictModeClass.StrictMode();
-        try{
+        try {
 
-                URL url = new URL(imgpath);
-                chickenViewHolder.card1.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+            URL url = new URL(imgpath);
+            SmallViewHolder.card1.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
 
-            } catch (Exception e) {
-                e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        SmallViewHolder.card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SmallPizzaActivity.class);
+                intent.putExtra("image", small.getImage());
+                intent.putExtra("name", small.getName());
+                intent.putExtra("location", small.getLocation());
+                intent.putExtra("price", small.getPrice());
+                mContext.startActivity(intent);
             }
-     chickenViewHolder.card1.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-Intent intent=new Intent(mContext,ChickenPizzaActivity.class);
-intent.putExtra("image",chickenPizza.getImage());
-             intent.putExtra("name",chickenPizza.getName());
-             intent.putExtra("location",chickenPizza.getLocation());
-             intent.putExtra("price",chickenPizza.getPrice());
-             mContext.startActivity(intent);
-         }
-     });
+        });
 
     }
 //
@@ -77,22 +77,22 @@ intent.putExtra("image",chickenPizza.getImage());
 
     @Override
     public int getItemCount() {
-        return chickenPizzaList.size();
+        return smallPizzaList.size();
     }
 
-    public class ChickenViewHolder extends RecyclerView.ViewHolder {
+    public class SmallViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgProfile, card1;
-        TextView tvName, tvlocation, tvPrice,tvfood;
+        TextView tvName, tvlocation, tvPrice, tvfood;
 
 
-        public ChickenViewHolder(@NonNull View itemView) {
+        public SmallViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgProfile = itemView.findViewById(R.id.imgProfile);
-            card1=itemView.findViewById(R.id.card1);
-            tvName=itemView.findViewById(R.id.tvName);
-            tvlocation=itemView.findViewById(R.id.tvlocation);
-            tvPrice=itemView.findViewById(R.id.tvPrice);
+
+            card1 = itemView.findViewById(R.id.card1);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvlocation = itemView.findViewById(R.id.tvlocation);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
             tvfood = itemView.findViewById(R.id.tvfood);
 
 
