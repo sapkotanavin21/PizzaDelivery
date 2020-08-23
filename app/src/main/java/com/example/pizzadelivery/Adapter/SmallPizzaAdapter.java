@@ -88,7 +88,7 @@ public class SmallPizzaAdapter extends RecyclerView.Adapter<SmallPizzaAdapter.Sm
 
         public SmallViewHolder(@NonNull View itemView) {
             super(itemView);
-
+//            imgProfile = itemView.findViewById(R.id.imgProfile);
             card1 = itemView.findViewById(R.id.card1);
             tvName = itemView.findViewById(R.id.tvName);
             tvlocation = itemView.findViewById(R.id.tvlocation);

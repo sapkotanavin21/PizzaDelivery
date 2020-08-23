@@ -1,12 +1,11 @@
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".CartActivity.ChickenPizzaActivity">
+        tools:context=".CartActivity.SmallPizzaActivity">
 
         <ImageView
             android:id="@+id/AddChicken"
@@ -18,7 +17,7 @@
             android:layout_marginStart="88dp"
             android:layout_marginTop="71dp"
             android:layout_marginEnd="38dp"
-            android:src="@drawable/pi1" />
+            android:src="@drawable/c5" />
 
         <TextView
             android:id="@+id/tvChicken"
@@ -59,9 +58,10 @@
             android:id="@+id/btnAddChicken"
             android:fontFamily="serif"
             android:text="Add to cart"
-            android:background="@drawable/butondesign"
+            android:background="@drawable/bg_btn"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
+            android:textColor="#fff"
             android:layout_below="@+id/tvAddPrice"
             android:layout_marginTop="20dp"/>
 

@@ -15,8 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizzadelivery.Adapter.SmallPizzaAdapter;
 import com.example.pizzadelivery.R;
+import com.example.pizzadelivery.api.SmallPizzaAPI;
+import com.example.pizzadelivery.model.Small;
 import com.example.pizzadelivery.url.Url;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
@@ -31,6 +35,10 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+
+    List<Small> smallList;
+    SmallPizzaAdapter smallPizzaAdapter;
+    RecyclerView smallrecycleview;
     private HomeViewModel homeViewModel;
     private int[] mImages = new int[]{
             R.drawable.a1, R.drawable.ad3, R.drawable.a1
@@ -52,13 +60,37 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        smallrecycleview = view.findViewById(R.id.recycleview);
         SmallPizza();
 
         return view;
     }
 
     private void SmallPizza() {
+        smallList=new ArrayList<>();
+        SmallPizzaAPI smallPizzaAPI= Url.getInstance().create(SmallPizzaAPI.class);
+        Call<List<Small>> call = smallPizzaAPI.getsmallpizza();
+        call.enqueue(new Callback<List<Small>>() {
+            @Override
+            public void onResponse(Call<List<Small>> call, Response<List<Small>> response) {
+                if(!response.isSuccessful())
+                {
+                    Toast.makeText(getContext(), "err"+response.code(), Toast.LENGTH_SHORT).show();
+                    Log.d("homefragent","this is" + response.code());
+                    return;
+                }
+                List<Small> smallList1 = response.body();
+                smallPizzaAdapter = new SmallPizzaAdapter(getContext(),smallList1);
+                smallrecycleview.setAdapter(smallPizzaAdapter);
+                smallrecycleview.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+            }
 
+            @Override
+            public void onFailure(Call<List<Small>> call, Throwable t) {
+                Toast.makeText(getContext(), "err", Toast.LENGTH_SHORT).show();
+                Log.d("Small Size Pizza","this is");
+            }
+        });
 
     }
 }

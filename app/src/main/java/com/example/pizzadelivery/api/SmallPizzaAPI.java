@@ -15,7 +15,7 @@ import retrofit2.http.Part;
 
 public interface SmallPizzaAPI {
     @GET("smallpizza")
-    Call<List<Small>> getchickenpizza();
+    Call<List<Small>> getsmallpizza();
     @Multipart
     @POST("upload")
     Call<Small> uploadImage(@Part MultipartBody.Part img);

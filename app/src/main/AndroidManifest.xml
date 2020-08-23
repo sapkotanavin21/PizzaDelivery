@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-
+        <activity android:name=".CartActivity.SmallPizzaActivity" />
     </application>
 
 </manifest>
