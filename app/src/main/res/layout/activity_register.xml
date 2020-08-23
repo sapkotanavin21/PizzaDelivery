@@ -43,17 +43,6 @@
                 android:hint="Last Name" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etaddress"
-                style="@style/register"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/ic_home_black_24dp"
-                android:hint="Address" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -67,18 +56,6 @@
                 android:hint="Contact Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etemail"
-                style="@style/register"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/ic_email"
-                android:fontFamily="sans-serif-medium"
-                android:hint="Email" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -156,8 +133,6 @@
                 android:textColor="#FF9100"
                 android:textSize="20dp"
                 android:textStyle="bold" />
-
-
         </LinearLayout>
 
     </LinearLayout>
