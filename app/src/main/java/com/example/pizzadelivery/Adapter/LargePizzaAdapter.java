@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizzadelivery.CartActivity.LargePizzaActivity;
 import com.example.pizzadelivery.R;
 import com.example.pizzadelivery.StrictModeClass.StrictModeClass;
 import com.example.pizzadelivery.model.LargePizza;
@@ -58,7 +59,7 @@ public class LargePizzaAdapter extends RecyclerView.Adapter<LargePizzaAdapter.La
         LargeViewHolder.card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext, CheesePizzaActivity.class);
+                Intent intent=new Intent(mContext, LargePizzaActivity.class);
                 intent.putExtra("image",cheesePizza.getImage());
                 intent.putExtra("name",cheesePizza.getName());
                 intent.putExtra("location",cheesePizza.getLocation());
@@ -68,7 +69,7 @@ public class LargePizzaAdapter extends RecyclerView.Adapter<LargePizzaAdapter.La
         });
 
     }
-//
+
 
 
     @Override
@@ -78,12 +79,11 @@ public class LargePizzaAdapter extends RecyclerView.Adapter<LargePizzaAdapter.La
 
     public class LargeViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgProfile, card2;
+        ImageView card2;
         TextView tvName, tvlocation, tvPrice,tvfood;
 
         public LargeViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgProfile = itemView.findViewById(R.id.imgProfile);
             card2=itemView.findViewById(R.id.card2);
             tvName=itemView.findViewById(R.id.tvName);
             tvlocation=itemView.findViewById(R.id.tvlocation);

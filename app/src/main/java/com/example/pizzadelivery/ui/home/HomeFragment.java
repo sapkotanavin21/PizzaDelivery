@@ -17,9 +17,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizzadelivery.Adapter.LargePizzaAdapter;
 import com.example.pizzadelivery.Adapter.SmallPizzaAdapter;
 import com.example.pizzadelivery.R;
+import com.example.pizzadelivery.api.LargePizzaAPI;
 import com.example.pizzadelivery.api.SmallPizzaAPI;
+import com.example.pizzadelivery.model.LargePizza;
 import com.example.pizzadelivery.model.Small;
 import com.example.pizzadelivery.url.Url;
 import com.synnapps.carouselview.CarouselView;
@@ -37,8 +40,11 @@ public class HomeFragment extends Fragment {
 
 
     List<Small> smallList;
+    List<LargePizza> largePizzas;
+
+    LargePizzaAdapter largePizzaAdapter;
     SmallPizzaAdapter smallPizzaAdapter;
-    RecyclerView smallrecycleview;
+    RecyclerView smallrecycleview, recyclerView2;
     private HomeViewModel homeViewModel;
     private int[] mImages = new int[]{
             R.drawable.a1, R.drawable.ad3, R.drawable.a1
@@ -63,7 +69,40 @@ public class HomeFragment extends Fragment {
         smallrecycleview = view.findViewById(R.id.recycleview);
         SmallPizza();
 
+        recyclerView2 = view.findViewById(R.id.recycleview2);
+        Largepizza();
+
         return view;
+    }
+
+    private void Largepizza() {
+        largePizzas=new ArrayList<>();
+        LargePizzaAPI largePizzaAPI= Url.getInstance().create(LargePizzaAPI.class);
+        Call<List<LargePizza>> call = largePizzaAPI.getlargepizza();
+        call.enqueue(new Callback<List<LargePizza>>() {
+            @Override
+            public void onResponse(Call<List<LargePizza>> call, Response<List<LargePizza>> response) {
+                if(!response.isSuccessful())
+                {
+                    Toast.makeText(getContext(), "err"+response.code(), Toast.LENGTH_SHORT).show();
+                    Log.d("homefragent","this is" + response.code());
+                    return;
+                }
+                List<LargePizza> cheeseList = response.body();
+                largePizzaAdapter = new LargePizzaAdapter(getContext(),cheeseList);
+                recyclerView2.setAdapter(largePizzaAdapter);
+                recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<LargePizza>> call, Throwable t) {
+                Toast.makeText(getContext(), "API is not working", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void SmallPizza() {
