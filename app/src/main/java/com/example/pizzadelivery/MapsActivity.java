@@ -1,10 +1,17 @@
-package com.example.pizzadelivery.url;
+package com.example.pizzadelivery;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -35,11 +42,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         CameraUpdate zoom;
-        zoom=CameraUpdateFactory.zoomTo(11);
+        zoom= CameraUpdateFactory.zoomTo(11);
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(27.706841, 85.330329);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("We are here"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("This is Our Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(zoom);
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -49,8 +56,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(MapsActivity.this,Main2Activity.class);
+        Intent intent = new Intent(MapsActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
 
     }
 }
