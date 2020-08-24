@@ -1,4 +1,6 @@
 package com.example.pizzadelivery.api;
+import com.example.pizzadelivery.model.MediumPizza;
+
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -10,11 +12,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface MediumPizzaAPI {
-    @GET("medium")
-    Call<List<MediumPizzaAPI>> getmushroompizza();
+    @GET("mediumpizza")
+    Call<List<MediumPizza>> getmediumpizza();
     @Multipart
     @POST("upload")
-    Call<MediumPizzaAPI> uploadImage(@Part MultipartBody.Part img);
-    @GET("medium")
-    Call<MediumPizzaAPI> getImage(@Header("Authorization") String id);
+    Call<MediumPizza> uploadImage(@Part MultipartBody.Part img);
+    @GET("mediumpizza")
+    Call<MediumPizza> getImage(@Header("Authorization") String id);
 }

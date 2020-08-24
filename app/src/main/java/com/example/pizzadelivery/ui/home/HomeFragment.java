@@ -18,11 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pizzadelivery.Adapter.LargePizzaAdapter;
+import com.example.pizzadelivery.Adapter.MediumPizzaAdapter;
 import com.example.pizzadelivery.Adapter.SmallPizzaAdapter;
 import com.example.pizzadelivery.R;
 import com.example.pizzadelivery.api.LargePizzaAPI;
+import com.example.pizzadelivery.api.MediumPizzaAPI;
 import com.example.pizzadelivery.api.SmallPizzaAPI;
 import com.example.pizzadelivery.model.LargePizza;
+import com.example.pizzadelivery.model.MediumPizza;
 import com.example.pizzadelivery.model.Small;
 import com.example.pizzadelivery.url.Url;
 import com.synnapps.carouselview.CarouselView;
@@ -41,10 +44,13 @@ public class HomeFragment extends Fragment {
 
     List<Small> smallList;
     List<LargePizza> largePizzas;
+    List<MediumPizza> mediumPizzaList;
+
 
     LargePizzaAdapter largePizzaAdapter;
     SmallPizzaAdapter smallPizzaAdapter;
-    RecyclerView smallrecycleview, recyclerView2;
+    MediumPizzaAdapter mediumPizzaAdapter;
+    RecyclerView smallrecycleview, recyclerView2,recyclerView3;
     private HomeViewModel homeViewModel;
     private int[] mImages = new int[]{
             R.drawable.a1, R.drawable.ad3, R.drawable.a1
@@ -72,8 +78,43 @@ public class HomeFragment extends Fragment {
         recyclerView2 = view.findViewById(R.id.recycleview2);
         Largepizza();
 
+        recyclerView3 = view.findViewById(R.id.recycleview3);
+        mediumpizza();
         return view;
     }
+
+    private void mediumpizza() {
+
+        mediumPizzaList=new ArrayList<>();
+        MediumPizzaAPI mediumPizzaAPI= Url.getInstance().create(MediumPizzaAPI.class);
+        Call<List<MediumPizza>> call = mediumPizzaAPI.getmediumpizza();
+        call.enqueue(new Callback<List<MediumPizza>>() {
+            @Override
+            public void onResponse(Call<List<MediumPizza>> call, Response<List<MediumPizza>> response) {
+                if(!response.isSuccessful())
+                {
+                    Toast.makeText(getContext(), "err"+response.code(), Toast.LENGTH_SHORT).show();
+                    Log.d("homefragent","this is" + response.code());
+                    return;
+                }
+                List<MediumPizza> mediumPizzasList1 = response.body();
+                mediumPizzaAdapter = new MediumPizzaAdapter(getContext(),mediumPizzasList1);
+                recyclerView3.setAdapter(mediumPizzaAdapter);
+                recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+
+            }
+
+            @Override
+            public void onFailure(Call<List<MediumPizza>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
 
     private void Largepizza() {
         largePizzas=new ArrayList<>();
