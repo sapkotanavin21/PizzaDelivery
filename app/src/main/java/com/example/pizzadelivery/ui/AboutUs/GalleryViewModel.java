@@ -1,4 +1,4 @@
-package com.example.pizzadelivery.ui.gallery;
+package com.example.pizzadelivery.ui.AboutUs;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
