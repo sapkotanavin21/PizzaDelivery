@@ -1,6 +1,8 @@
 package com.example.pizzadelivery;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -52,6 +54,21 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
