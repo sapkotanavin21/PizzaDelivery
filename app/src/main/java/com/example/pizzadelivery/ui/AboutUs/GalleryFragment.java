@@ -18,13 +18,12 @@ import com.example.pizzadelivery.R;
 
 public class GalleryFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+
     WebView webview;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         webview=root.findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
