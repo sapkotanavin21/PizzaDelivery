@@ -8,6 +8,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_gallery">About Us</string>
+    <string name="menu_slideshow">Location</string>
+    <string name="menu_tools">Terms and Conditions</string>
+    <string name="menu_share">Profile</string>
+    <string name="menu_card">My Cart</string>
+    <string name="menu_send">Logout</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
