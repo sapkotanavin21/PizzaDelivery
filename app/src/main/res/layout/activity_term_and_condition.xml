@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".TermAndConditionActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#FF5722"
+        android:fontFamily="serif"
+        android:justificationMode="inter_word"
+        android:text="-> Acceptance of Conditions. Ordering with us constitutes your acceptance of these terms and conditions which take effect at the time you first access the site or phone us. If you do not accept these terms and conditions you must not place an order via the internet or over the phone. You can only access our full menu and order from us from this website and therefore all orders are subject to these conditions."
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:background="#FF5722"
+        android:fontFamily="serif"
+        android:justificationMode="inter_word"
+        android:text="-> Cancellation. Once your order has been placed, we set about cooking straight away. That means should you wish to cancel your order, please call within 5 minutes of placing the original order to receive a full refund. Please call us (rather than email) when requesting a cancellation. As per the Distance Selling Regulation (Regulation 13) your order is perishable and a cooling off period for cancellation unfortunately does not apply."
+        android:textColor="#000"
+        android:textSize="20sp" />
+
+</LinearLayout>

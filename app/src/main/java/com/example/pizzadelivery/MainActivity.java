@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tnc() {
-
+        Intent intent = new Intent(MainActivity.this, TermAndConditionActivity.class);
+        startActivity(intent);
     }
 
     private void logout() {
