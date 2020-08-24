@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.pizzadelivery.Adapter.CartAdapter;
 import com.example.pizzadelivery.R;
 import com.example.pizzadelivery.model.Cart;
 import com.example.pizzadelivery.url.Url;
@@ -31,7 +32,7 @@ public class MyCartFragment extends Fragment {
 
     RecyclerView recyclerView4;
     List<Cart> cartList;
-    CartAdapter CartAdapter;
+    com.example.pizzadelivery.Adapter.CartAdapter CartAdapter;
 
     public static MyCartFragment newInstance() {
         return new MyCartFragment();
