@@ -22,4 +22,12 @@
         android:name="com.example.pizzadelivery.ui.Location.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+
+    <fragment
+        android:id="@+id/nav_my_Cart"
+        android:name="com.example.pizzadelivery.ui.Mycart.MyCartFragment"
+        android:label="@string/menu_card"
+        tools:layout="@layout/my_cart_fragment" />
+
 </navigation>
