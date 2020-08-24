@@ -21,6 +21,21 @@
             app:strokeColor="#ede4ed"
             app:strokeWidth="1dp" />
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Category1"
+            android:text="categories"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:fontFamily="serif"
+            android:textSize="30dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -37,23 +52,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Category1"
-            android:text="categories"
             android:textColor="#000000"
+            android:text="Medium Pizza"
             android:gravity="center"
             android:fontFamily="serif"
             android:textSize="30dp"/>
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleview1"
+            android:id="@+id/recycleview3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
 
         <TextView
@@ -76,19 +88,6 @@
             android:layout_height="398dp"
             android:src="@drawable/a1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="All Types Pizza"
-            android:gravity="center"
-            android:fontFamily="serif"
-            android:textSize="30dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleview3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <ImageView
             android:layout_width="match_parent"

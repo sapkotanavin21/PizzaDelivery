@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".CartActivity.ChickenPizzaActivity">
+    tools:context=".CartActivity.LargePizzaActivity">
 
     <ImageView
         android:id="@+id/AddCheese"
@@ -59,7 +59,7 @@
         android:id="@+id/btnAddCheese"
         android:text="Add to cart"
         android:fontFamily="serif"
-        android:background="@drawable/butondesign"
+        android:background="@drawable/bg_btn"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_below="@+id/tvAddPrice"
