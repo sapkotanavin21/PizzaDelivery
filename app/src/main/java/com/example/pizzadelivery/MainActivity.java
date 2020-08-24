@@ -62,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
             logout();
             return true;
         }
+        else if(id == R.id.action_TNC) {
+            tnc();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void tnc() {
+
     }
 
     private void logout() {
