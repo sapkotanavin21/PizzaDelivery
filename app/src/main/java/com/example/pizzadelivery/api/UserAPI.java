@@ -2,6 +2,7 @@ package com.example.pizzadelivery.api;
 
 
 
+import com.example.pizzadelivery.model.Update;
 import com.example.pizzadelivery.model.User;
 import com.example.pizzadelivery.model.username;
 import com.example.pizzadelivery.serverresponse.ImageResponse;
@@ -31,6 +32,6 @@ public interface UserAPI {
     @GET("users/me")
     Call<User> getUserDetails(@Header("Authorization") String token);
 
-//    @PUT("users/me")
-//    Call<Update> getUpdate(@Header("Authorization") String token, @Body Update update);
+    @PUT("users/me")
+    Call<Update> getUpdate(@Header("Authorization") String token, @Body Update update);
 }

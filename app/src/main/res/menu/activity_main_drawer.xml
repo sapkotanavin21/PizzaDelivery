@@ -21,6 +21,9 @@
             android:id="@+id/nav_my_Cart"
             android:icon="@drawable/ic_add_shopping_cart_black_24dp"
             android:title="@string/menu_card" />
-
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profile_foreground"
+            android:title="@string/menu_share" />
     </group>
 </menu>

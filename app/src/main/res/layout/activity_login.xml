@@ -79,9 +79,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/quicksand_regular"
+            android:layout_margin="10dp"
             android:text="Need Account?"
             android:textColor="#9219DD"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tvRegister"
@@ -91,9 +92,8 @@
             android:fontFamily="@font/quicksand_regular"
             android:text="Click Here!!"
             android:textColor="#421A5A"
-            android:textSize="16dp" />
-
-
+            android:layout_marginTop="10dp"
+            android:textSize="18dp" />
     </LinearLayout>
 
 
