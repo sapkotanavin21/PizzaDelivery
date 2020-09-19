@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,8 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     Button btnlogin;
     EditText etUsername, etPassword;
     TextView tvRegister;
+    TextView ProximitySensor, data;
     private NotificationManagerCompat notificationManagerCompat;
-    private SensorManager sensorManager;
+    SensorManager mySensorManager;
+    Sensor myProximitySensor;
     
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         channel.createChannel();
 
        tvRegister=findViewById(R.id.tvRegister);
-       sensorGyro();
+
       tvRegister.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -62,6 +65,21 @@ public class LoginActivity extends AppCompatActivity {
               startActivity(intent);
           }
       });
+
+        //
+        ProximitySensor = (TextView) findViewById(R.id.proximitySensor);
+        data = (TextView) findViewById(R.id.data);
+        mySensorManager = (SensorManager) getSystemService(
+                Context.SENSOR_SERVICE);
+        myProximitySensor = mySensorManager.getDefaultSensor(
+                Sensor.TYPE_PROXIMITY);
+        if (myProximitySensor == null) {
+            ProximitySensor.setText("No Proximity Sensor!");
+        } else {
+            mySensorManager.registerListener(proximitySensorEventListener,
+                    myProximitySensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,33 +105,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void sensorGyro(){
-        sensorManager=(SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor=sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-        SensorEventListener sensorEventListener=new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                if(event.values[1]<0){
-                    login();
-                    finish();
-                }
-                else if (event.values[1]>0){
-                    startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
-        };
-        if (sensor !=null){
-            sensorManager.registerListener(sensorEventListener,sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
-        else{
-            Toast.makeText(this,"No sensor found", Toast.LENGTH_LONG).show();
-        }
-    }
 
     private void login() {
         notificationManagerCompat = NotificationManagerCompat.from(this);
@@ -181,6 +172,32 @@ public class LoginActivity extends AppCompatActivity {
             etUsername.requestFocus();
         }
     }
+
+
+    SensorEventListener proximitySensorEventListener
+            = new SensorEventListener() {
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            // TODO Auto-generated method stub
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            WindowManager.LayoutParams params = LoginActivity.this.getWindow().getAttributes();
+            if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+
+                if (event.values[0] == 0) {
+                    params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    params.screenBrightness = 0;
+                    getWindow().setAttributes(params);
+                } else {
+                    params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    params.screenBrightness = -1f;
+                    getWindow().setAttributes(params);
+                }
+            }
+        }
+    };
 
 }
 
